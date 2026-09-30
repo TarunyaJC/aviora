@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* ── AVIORA palette ─────────────────────────────── */
+  --color-obsidian: #05070d;
+  --color-midnight: #0a0f1c;
+  --color-graphite: #121a2b;
+  --color-mist: #1b2743;
+  --color-silver: #96a0b5;
+  --color-frost: #e9edf5;
+  --color-champagne: #d4b06a;
+  --color-champagne-soft: #ecd9a8;
+
+  /* ── Typography ─────────────────────────────────── */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Motion ─────────────────────────────────────── */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── Glassmorphism recipe ───────────────────────── */
+  --color-glass: rgba(18, 26, 43, 0.55);
+}
+
+/* Base layer */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-obsidian text-frost font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(27, 39, 67, 0.6), transparent),
+      linear-gradient(180deg, #05070d 0%, #070b14 100%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(212, 176, 106, 0.25);
+  }
+
+  /* Refined focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 2px;
+  }
+}
+
+/* Reusable premium utilities */
+@utility glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(150, 160, 181, 0.14);
+}
+
+@utility text-gradient-gold {
+  background: linear-gradient(120deg, var(--color-frost) 20%, var(--color-champagne-soft) 55%, var(--color-champagne) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── E-ticket print layout ────────────────────────────────────── */
+@media print {
+  /* Hide the app chrome; show only the ticket flow. */
+  body > *:not(#root) { display: none; }
+  .no-print { display: none !important; }
+
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    color: #111 !important;
+  }
+
+  .ticket-shell {
+    border: 1px solid #bbb !important;
+    border-radius: 12px;
+    background: #fff !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 12px;
+    box-shadow: none;
+  }
+
+  .ticket-shell * {
+    color: #111 !important;
+    background: transparent !important;
+    border-color: #999 !important;
+  }
+
+  .ticket-shell .bg-white { background: #fff !important; }
+}

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment secrets (never commit)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test / tooling artifacts
+coverage/
+.vite/
+*.tsbuildinfo
+.testdata/
+
+# Runtime data (SQLite database - recreated by `npm run seed` or auto-seed on boot)
+server/data/
+scripts-temp/
+.freebuff/
+
+# OS
+.DS_Store
+Thumbs.db
